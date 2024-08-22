@@ -25,7 +25,15 @@
     // 🧠 The person also has an `ageGracefully` method, which increases `age` by 1 each time it's called.
     // 🧠 But there's a catch: once `age` reaches 12, the `ageGracefully` method will have no effect.
     class PeterPan {
-
+     constructor(desiredname) {
+      this.name = desiredname
+      this.age = 0
+     }
+     ageGracefully() {
+      if (this.age < 12) {
+        this.age++
+      }
+     }
     }
 
     // 👉 CHALLENGE 2
@@ -37,10 +45,25 @@
     // 🧠 Planes have a `down` method, which takes a number of meters as its argument.
     // 🧠 Calling `down` changes the `altitude` prop appropriately and returns the updated `altitude`.
     // 🧠 If calling `down` would cause the plane to go below altitude zero, `altitude` is set to 0 and the string "CRASH!" is returned.
-    class AirPlane {
-
+    class AirPlane { 
+      constructor(model) {
+        this.model = model
+        this.altitude = 0
+      }
+      up(meter) {
+        this.altitude += meter
+        return this.altitude
+      }
+      down(meter) {
+        if(this.altitude >= meter) {
+          this.altitude -= meter 
+          return this.altitude
+        }
+        this.altitude = 0
+        return "CRASH!"
+      }
     }
-
+           
     // 👉 CHALLENGE 3
     // 🧠 Build a Bulb class.
     // 🧠 All new bulbs are initialised with a prop `isOn` and three methods: `turnOn`, `turnOff` and `toggle`.
@@ -48,9 +71,23 @@
     // 🧠 The methods work as one might expect, changing the value of `isOn` to the appropriate Boolean.
     // 🧠 The methods also return one of these two strings: "You turned the bulb ON", or "You turned the bulb OFF".
     class Bulb {
-
+     isOn = false
+     turnOn() {
+      this.isOn = true
+      return "You turned the bulb ON"
+     }
+     turnOff() {
+      this.isOn = false
+      return "You turned the bulb OFF"
+     }
+     toggle() {
+      this.isOn = !this.isOn
+      if (this.isOn) {
+        return "You turned the bulb ON"
+      }
+      return "You turned the bulb OFF"
+     }
     }
-
     // 👉 CHALLENGE 4
     // 🧠 Build a CountDown class that can count down starting at any number we pass to the constructor.
     // 🧠 CountDowns have a `count` method that returns a string in the format "10!".
@@ -66,9 +103,22 @@
     //   minusThree.count() // returns null
     //   minusThree.count() // returns null
     class CountDown {
-
+      constructor(num) {
+     this.currentnum = num
     }
-
+    count() {
+      if (this.currentnum >= 1) {
+        const oldvalue = this.currentnum
+        this.currentnum--
+        return `${oldvalue}!`
+  } else if (this.currentnum === 0) {
+    this.currentnum--
+    return "Liftoff!"
+  } else {
+    return null 
+  }
+    }
+  }
     // 🧪 TESTS, do not work below this line
     // 🧪 TESTS, do not work below this line
     // 🧪 TESTS, do not work below this line
